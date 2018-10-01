@@ -37,8 +37,8 @@ public class ProductServiceImpl implements IProductService{
 
     public ServerResponse saveOrUpdateProduct(Product product){
         if (product != null){
-            if (StringUtils.isNotBlank(product.getSubImage())){
-                String[] subImageArray = product.getSubImage().split(",");
+            if (StringUtils.isNotBlank(product.getSubImages())){
+                String[] subImageArray = product.getSubImages().split(",");
                 if (subImageArray.length > 0){
                     product.setMainImage(subImageArray[0]);
                 }
@@ -96,7 +96,7 @@ public class ProductServiceImpl implements IProductService{
         productDetailVo.setSubtitle(product.getSubtitle());
         productDetailVo.setPrice(product.getPrice());
         productDetailVo.setMainImage(product.getMainImage());
-        productDetailVo.setSubImage(product.getSubImage());
+        productDetailVo.setSubImage(product.getSubImages());
         productDetailVo.setCategoryId(product.getCategoryId());
         productDetailVo.setDetail(product.getDetail());
         productDetailVo.setName(product.getName());
@@ -132,7 +132,7 @@ public class ProductServiceImpl implements IProductService{
         return productListVo;
     }
 
-    public ServerResponse<PageInfo> getproductList(int pageNum,int pageSize){
+    public ServerResponse<PageInfo> getProductList(int pageNum,int pageSize){
         //startPage -- start
         //填充自己的sql查询逻辑
         //pageHelper收尾

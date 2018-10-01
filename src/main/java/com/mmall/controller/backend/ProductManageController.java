@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/manage/product")
+@RequestMapping("/manage/product/")
 public class ProductManageController {
 
     @Autowired
@@ -89,7 +89,7 @@ public class ProductManageController {
         }
         if (iUserService.checkAdminRole(user).isSuccess()){
             //填充业务
-            return iProductService.getproductList(pageNum,pageSize);
+            return iProductService.getProductList(pageNum,pageSize);
 
         }else{
             return ServerResponse.createByErrorMessage("无权限操作");
