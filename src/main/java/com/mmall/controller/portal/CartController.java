@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  * @date 2018/10/7
  */
 @Controller
-@RequestMapping("/cart")
+@RequestMapping("/user/cart")
 public class CartController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class CartController {
 
     @RequestMapping("list.do")
     @ResponseBody
-    public ServerResponse list(HttpSession session,Integer count,Integer prodoctId){
+    public ServerResponse list(HttpSession session){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDesc());
@@ -35,12 +35,12 @@ public class CartController {
 
     @RequestMapping("add.do")
     @ResponseBody
-    public ServerResponse add(HttpSession session,Integer count,Integer prodoctId){
+    public ServerResponse add(HttpSession session,Integer count,Integer productId){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDesc());
         }
-        return iCartService.add(user.getId(),prodoctId,count);
+        return iCartService.add(user.getId(),productId,count);
     }
 
     @RequestMapping("update.do")

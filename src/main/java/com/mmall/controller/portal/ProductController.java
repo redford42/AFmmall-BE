@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/product/")
+@RequestMapping("/user/product/")
 public class ProductController {
     @Autowired
     private IProductService iProductService;
@@ -31,6 +31,5 @@ public class ProductController {
                                          @RequestParam(value = "pageSize",defaultValue = "10")int pageSize,
                                          @RequestParam(value = "orderBy",defaultValue = "")String orderBy){
         return iProductService.getProductByKeywordCategory(keyword,categoryId,pageNum,pageSize,orderBy);
-
     }
 }

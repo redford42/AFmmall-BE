@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  * @date 2018/11/6
  */
 @Controller
-@RequestMapping("/shipping/")
+@RequestMapping("/user/shipping/")
 public class ShippingController {
 
     @Autowired
