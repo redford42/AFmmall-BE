@@ -59,7 +59,7 @@ public class UserController {
      */
     @RequestMapping(value = "register.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<String> register(User user) {
+    public ServerResponse<String> register(@RequestBody User user) {
         return iUserService.register(user);
     }
 
@@ -134,25 +134,23 @@ public class UserController {
 
     /**
      * 登录状态下重置密码
-     *
      * @param session
-     * @param passwordOld
-     * @param passwordNew
+     * @param map
      * @return
      */
     @RequestMapping(value = "reset_password.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<String> resetPassword(HttpSession session, String passwordOld, String passwordNew) {
+    public ServerResponse<String> resetPassword(HttpSession session, @RequestBody(required = true) Map<String, Object> map) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {
             return ServerResponse.createByErrorMessage("用户未登陆");
         }
-        return iUserService.resetPassword(passwordOld, passwordNew, user);
+        return iUserService.resetPassword(map.get("passwordOld").toString(), map.get("passwordNew").toString(), user);
     }
 
     @RequestMapping(value = "update_information.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<User> update_information(HttpSession session, User user) {
+    public ServerResponse<User> update_information(HttpSession session, @RequestBody User user) {
         User currentUser = (User) session.getAttribute(Const.CURRENT_USER);
         if (currentUser == null) {
             return ServerResponse.createByErrorMessage("用户未登陆");

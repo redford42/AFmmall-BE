@@ -184,7 +184,7 @@
     <include refid="Base_Column_List"/>
     from mmall_order_item
     WHERE user_id = #{userId}
-    and orderNo = #{orderNo}
+    and order_no = #{orderNo}
   </select>
 
   <select id="getByOrderNo" parameterType="map" resultMap="BaseResultMap">

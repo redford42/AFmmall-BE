@@ -1,13 +1,19 @@
 package com.mmall.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+
 public class Product {
+    @JsonProperty(value = "id")
     private Integer id;
 
+    @JsonProperty(value = "categoryId")
     private Integer categoryId;
 
+    @JsonProperty(value = "name")
     private String name;
 
     private String subtitle;
